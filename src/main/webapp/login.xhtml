@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>ce que tu veux</title>
+	</h:head>
+	<h:body>
+		<f:subview id="navbar">
+			<ui:include src="includes/navbar.xhtml" />
+		</f:subview>
+
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+			<p:fieldset styleClass="bloc">
+				<h3 class="label">Connexion</h3>
+				<h:outputText styleClass="labelWhite" value="email : "></h:outputText>
+				<h:inputText id="email" value="#{connect.personne.email}"></h:inputText>
+				<p:message for="email"></p:message>
+				<br />
+				<br />
+				<h:outputText styleClass="labelWhite" value="Password : "></h:outputText>
+				<h:inputText id="password" value="#{connect.personne.motDePasse}"></h:inputText>
+				<p:message for="password"></p:message>
+				<br />
+				<br />
+				<p:commandButton action="#{connect.validateLoginPassword}"
+					value="Jonny" ajax="true">
+					<f:ajax execute="@form" render="@form" />
+				</p:commandButton>
+			</p:fieldset>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

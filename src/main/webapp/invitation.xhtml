@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+	</h:head>
+	<h:body>
+		<h1>Bienvenue dans liaisonJsf</h1>
+	
+			<f:subview id="navbar">
+				<ui:include src="includes/navbar.xhtml" />
+			</f:subview>
+			<h:form>
+				<h:outputLabel styleClass="label" value="Select Friend" />
+				<p:selectOneMenu id="type"
+					value="#{invitationBean.idPersonneInvitee}" effect="fold"
+					editable="false">
+					<f:selectItems value="#{invitationBean.personnes}" var="personne"
+						itemLabel="#{personne.nom} #{personne.prenom} #{personne.ville.nom}"
+						itemValue="#{personne.id}" />
+				</p:selectOneMenu>
+				<br />
+				<p:commandButton styleClass="button" value="Inviter"
+					action="#{invitationBean.envoyer}" ajax="true">
+					<f:ajax execute="@form" render="@form" />
+				</p:commandButton>
+				<p:inputTextarea rows="10" cols="50"
+					completeMethod="#{inputTextareaView.completeArea}" queryDelay="750"
+					minQueryLength="4" value="#{invitationBean.invitation.message}" />
+				<p:fileUpload name="myfile"></p:fileUpload>
+			</h:form>
+	</h:body>
+</f:view>
+</html>
